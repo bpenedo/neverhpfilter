@@ -39,7 +39,7 @@ As the output is an xts object, it can be easily graphed with `plot.xts`. Note t
 
 ```{r, warning = FALSE}
 main <- "Log of Real GDP (GDPC1) and trend"
-plot(gdp_filtered["1950/"][,1:2], grid.col = "white", legend.loc = "topleft", main = main,  panels = 'lines(gdp_filtered["1950/"][,3], type="h", on=NA)')
+plot(gdp_filtered["1950/"][,1:2], legend.loc = "topleft", main = main,  panels = 'lines(gdp_filtered["1950/"][,3], type="h", on=NA)')
 ```
 
 While `xts` has many useful functions for handling time series, one can extend the use of this class further with packages such as `PerformanceAnalytics`, Recession bars are created easily with the `period.areas` argument of the `chart.TimeSeries` function.
@@ -68,18 +68,12 @@ Employment_log <- 100*log(PAYEMS["1950/"])
 
 employment_cycle <- yth_filter(Employment_log, h = 24, p = 12, output = "cycle")
 
-main <- "Log of Employment cycle"
-cols <- c("darkred", "darkgreen")[(employment_cycle > 0) + 1]  
-plot(employment_cycle, grid.col = "white", type = "h", col = cols, main = main)
-abline(h=0)
+plot(employment_cycle, grid.col = "white", type = "h", up.col="darkgreen", dn.col="darkred", 
+     main = "Log of Employment cycle")
 ```
 
-One may wish to consider longer-term cycles by extending `h`. Below is an example of taking h from 8 quarters or 2 years, to 20 quarters (5 years), and then 40 quarters (10 years). 
+One may wish to consider longer-term cycles by extending `h`. Below is an example of taking h from 8 quarters or 2 years, to 40 quarters (10 years). 
 ```{r}
-gdp_5yr <- yth_filter(log_RGDP, h = 20, p = 4, output = c("x", "trend", "cycle"))
-
-main <- "Log of Real GDP and 5-year trend "
-plot(gdp_5yr["1980/"][,1:2], grid.col = "white", legend.loc = "topleft", main = main,  panels = 'lines(gdp_5yr["1980/"][,3], type="h", on=NA)')
 
 gdp_10yr <- yth_filter(log_RGDP, h = 40, p = 4, output = c("x", "trend", 
 "cycle"))
@@ -103,11 +97,4 @@ plot(gdp_model)
 ```
 
 
-Optional parameters supported by the `glm` function can be used as well. An example using a different error distribution, defined with the `family` argument, is illustrated below.
-
-```{r, warning=FALSE, message=FALSE}
-gdp_poisson <- yth_glm(log_RGDP["1960/"], h = 8, p = 4, family = poisson)
-
-summary(gdp_poisson)
-```
 
