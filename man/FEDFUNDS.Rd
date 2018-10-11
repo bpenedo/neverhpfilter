@@ -10,8 +10,8 @@
  \item\strong{Seasonal Adjustment:} {Not Seasonally Adjusted}
  \item\strong{Frequency:} {Monthly}
  \item\strong{Units:} {Percent}
- \item\strong{Date Range:} {1954-07-01 to 2018-04-01}
- \item\strong{Last Updated} {2018-05-01 3:41 PM CDT}
+ \item\strong{Date Range:} {1954-07-01 to 2018-09-01}
+ \item\strong{Last Updated} {2018-10-01 3:41 PM CDT}
 }}
 \source{
 Board of Governors of the Federal Reserve System (US) 
