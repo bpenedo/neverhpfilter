@@ -82,10 +82,11 @@ When filtering time series, the cycle component is of great interest. Here, it i
 a random walk representation (Hamilton 44).
 
 ```{r, warning = FALSE}
-employ_cycle <- yth_filter(log_Employment, h = 8, p = 4, output = c("cycle", "random"), family = gaussian)
+employ_cycle <- yth_filter(log_Employment, h = 8, p = 4, output = c("cycle","random"), family = gaussian)
+employ_cycle$Zero <- 0
 
-plot.xts(employ_cycle, grid.col = "white", legend.loc = "topright", main="Log of Employment cycle and random")
-abline(h=0)
+plot.xts(employ_cycle, col=c("black", "red"), grid.col = "white", legend.loc = "topright",
+         main="Log of Employment cycle and random")
 ```
 
 Turning the page, we find a similar graph of the cyclical component of $100 * log$ of GDP, Exports, Consumption, Imports, Investment, and Government (Hamilton 45). 
