@@ -91,6 +91,7 @@ colnames(GS10) <- "GS10"
 FEDFUNDS <- as.xts(read.zoo("https://fred.stlouisfed.org/data/FEDFUNDS.txt", skip = 60,
                         index.column = 1, header = TRUE, format = "%Y-%m-%d",
                         FUN = as.yearmon))
+
 colnames(FEDFUNDS ) <- "FEDFUNDS"
 
 # S&P 500
